@@ -16,20 +16,20 @@ const schema = {
     validate: {
       len: [2, 50],
     },
-    },
-    body: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      reference: {
-          model: "user",
-          key: "id",
-      }
+  },
+  body: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  user_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    reference: {
+      model: "user",
+      key: "id",
     },
   },
+};
 
 //options
 const options = {
