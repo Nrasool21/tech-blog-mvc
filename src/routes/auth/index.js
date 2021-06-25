@@ -1,4 +1,5 @@
 const { Router } = require("express");
+
 const handleSignUp = require("../../controllers/auth/handleSignUp");
 const handleLogin = require("../../controllers/auth/handleLogin");
 const handleLogout = require("../../controllers/auth/handleLogout");
