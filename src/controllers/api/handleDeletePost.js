@@ -1,4 +1,4 @@
-const handleDeletePost = (res, req) => {
+const handleDeletePost = (req, res) => {
   //get id from req.params
   //destroy post
 
