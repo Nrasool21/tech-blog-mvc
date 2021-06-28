@@ -1,25 +1,39 @@
 const { User } = require("../../models");
 
 const handleLogin = async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  //to interact with the database need to require user model
-  const user = await User.findOne({
-    where: {
-      username: username,
-    },
-  });
+  try {
+    const username = req.body.username;
+    const password = req.body.password;
+    //to interact with the database need to require user model
+    const user = await User.findOne({
+      where: {
+        username: username,
+      },
+    });
 
-  if (!user) {
-    console.log("User does not Exist");
-    return res.status(401).json({ error: "Failed to login" });
-  }
+    if (!user) {
+      console.log("User does not Exist");
+      return res.status(401).json({ error: "Failed to login" });
+    }
 
-  if (user.password !== password) {
-    console.log("Incorrect password");
-    return res.status(401).json({ error: "Failed to login" });
+    if (user.password !== password) {
+      console.log("Incorrect password");
+      return res.status(401).json({ error: "Failed to login" });
+    }
+
+    req.session.save(() => {
+      req.session.isLoggedIn = true;
+      req.session.username = user.username;
+      req.session.userId = user.id;
+
+      return res.status(200).json({ message: success });
+    });
+
+    res.status(200).json({ message: "success" });
+  } catch (error) {
+    console.log(error.message);
+    return res.status(500).json({ error: "Failed to login" });
   }
-  
-  res.status(200).json({ message: "success" });
 };
+
 module.exports = handleLogin;
