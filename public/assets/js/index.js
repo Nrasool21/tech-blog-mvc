@@ -1,3 +1,4 @@
+
 const handleSignupSubmit = () => {
   //post request with username and password
   // auth/sign-up
@@ -23,7 +24,7 @@ const handleLoginSubmit = async (event) => {
     redirect: "follow",
     body: JSON.stringify(requestBody),
   };
-
+console.log(requestBody)
   const response = await fetch("/auth/login", options);
 
   if (response.status === 200) {
@@ -31,9 +32,7 @@ const handleLoginSubmit = async (event) => {
   } else {
     console.log("Failed to login");
   }
-  //post request with username and password
-  // auth/login
-  //on success window.location to /dashboard
+
 };
 
 const handleLogoutClick = () => {

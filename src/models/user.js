@@ -16,10 +16,10 @@ const schema = {
     validate: {
       len: [2, 20],
     },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
+  },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
 };
 

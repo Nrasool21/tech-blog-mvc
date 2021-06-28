@@ -3,7 +3,7 @@ const { User } = require("../../models");
 const handleLogin = async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
-
+  //to interact with the database need to require user model
   const user = await User.findOne({
     where: {
       username: username,
@@ -19,7 +19,7 @@ const handleLogin = async (req, res) => {
     console.log("Incorrect password");
     return res.status(401).json({ error: "Failed to login" });
   }
-
+  
   res.status(200).json({ message: "success" });
 };
 module.exports = handleLogin;
