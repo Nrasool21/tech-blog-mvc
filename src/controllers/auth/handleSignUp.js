@@ -5,17 +5,20 @@ const handleSignUp = async (req, res) => {
     const username = req.body.username;
     const password = req.body.password;
 
+    console.log(username); 
+
     const user = await User.create({
       username: username,
       password: password,
     });
+    console.log(user);
 
-    if (!user) {
-      console.log("Failed to create user");
-      return res.status(500).json({ error: "Failed to signup" });
+    if (user) {
+      // console.log("Failed to create user");
+      return res.status(200).json({ message: "success" });
     }
+    return res.status(500).json({ error: "Failed to signup" });
 
-    return res.status(200).json({ message: "success" });
   } catch (error) {
     console.log(error.message);
     return res.status(500).json({ error: "Failed to signup" });
