@@ -1,9 +1,21 @@
-const renderHomePage = (req, res) => {
-  //get all posts
-  //send send posts to handlebars
-  //the array of post we get from model will feed in here
+
+const { Post, User } = require("../../models");
+const { getPlain } = require("../../utils");
+
+const renderHomePage = async (req, res) => {
+  const postsFromModel = await Post.findAll({
+    include: {
+      model: User,
+      attributes: ["username"],
+    },
+  });
+
   const { isLoggedIn } = req.session;
   res.render("homepage", { isLoggedIn });
+
+  const posts = getPlain(postsFromModel);
+
+  res.render("homepage", { isLoggedIn, posts });
 };
 
 module.exports = renderHomePage;

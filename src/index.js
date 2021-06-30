@@ -9,9 +9,7 @@ const SequelizeStore = require("connect-session-sequelize")(session.Store);
 
 const sequelize = require("./config/connection");
 const routes = require("./routes");
-//const { route } = require("./routes/index");
-//const routes = require("./routes");
-//const helpers = require("helpers");
+const helpers = require("./helpers");
 
 const PORT = process.env.PORT || 3000;
 
@@ -27,7 +25,7 @@ const sessionOptions = {
   }),
 };
 
-const handlebarsOptions = {};
+const handlebarsOptions = { helpers };
 
 const hbs = handlebars.create(handlebarsOptions);
 

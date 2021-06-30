@@ -1,8 +1,20 @@
-const renderDashboardPage = (req, res) => {
-  //get all Your posts
-  //send send your posts to handlebars
+const { Post, User } = require("../../models");
+const { getPlain } = require("../../utils");
 
-  res.render("dashboard");
+const renderDashboardPage = async (req, res) => {
+  const postsFromModel = await Post.findAll({
+    include: {
+      model: User,
+      attributes: ["username"],
+    },
+    where: {
+      user_id: req.session.userId,
+    },
+  });
+
+  const posts = getPlain(postsFromModel);
+
+  res.render("dashboard", { posts });
 };
 
 module.exports = renderDashboardPage;
