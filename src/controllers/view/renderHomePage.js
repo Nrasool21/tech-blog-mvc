@@ -11,7 +11,6 @@ const renderHomePage = async (req, res) => {
   });
 
   const { isLoggedIn } = req.session;
-  res.render("homepage", { isLoggedIn });
 
   const posts = getPlain(postsFromModel);
 
