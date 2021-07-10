@@ -1,5 +1,5 @@
 const renderCreatePostPage = (req, res) => {
-  res.render("createPosts");
+  res.render("createPost");
 };
 
 module.exports = renderCreatePostPage;
